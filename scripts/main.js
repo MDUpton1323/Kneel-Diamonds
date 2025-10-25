@@ -1,11 +1,16 @@
 import { MetalOptions } from "./MetalOptions.js";
 import { SizeOptions } from "./SizeOptions.js";
 import { StyleOptions } from "./StyleOptions.js";
+import { PlaceOrder } from "./PlaceOrder.js";
 
 const render = async () => {
+  console.log("Render function called");
   const metalOptionsHTML = await MetalOptions();
   const sizeOptionsHTML = await SizeOptions();
   const styleOptionHTML = await StyleOptions();
+  const placeOrderHTML = PlaceOrder();
+
+  const container = document.querySelector("#container");
 
   const composedHTML = `
         <h1>Kneel Diamonds</h1>
@@ -28,7 +33,7 @@ const render = async () => {
         </article>
     
         <article class="order">
-    
+                ${placeOrderHTML}
         </article>
     
         <article class="customOrders">
