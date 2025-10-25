@@ -43,4 +43,8 @@ export const savePlaceOrder = async () => {
 
   //Send the transient state to your API
   const response = await fetch("http://localhost:8088/orders", postOptions);
+
+  //Dispatch a custom event when the submission is complete
+  const customEvent = new CustomEvent("newOrderPlaced");
+  document.dispatchEvent(customEvent);
 };

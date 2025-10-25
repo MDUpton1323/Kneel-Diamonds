@@ -2,6 +2,7 @@ import { MetalOptions } from "./MetalOptions.js";
 import { SizeOptions } from "./SizeOptions.js";
 import { StyleOptions } from "./StyleOptions.js";
 import { PlaceOrder } from "./PlaceOrder.js";
+import { Orders } from "./CustomOrdersList.js";
 
 const render = async () => {
   console.log("Render function called");
@@ -9,6 +10,7 @@ const render = async () => {
   const sizeOptionsHTML = await SizeOptions();
   const styleOptionHTML = await StyleOptions();
   const placeOrderHTML = PlaceOrder();
+  const ordersHTML = await Orders();
 
   const container = document.querySelector("#container");
 
@@ -38,11 +40,16 @@ const render = async () => {
     
         <article class="customOrders">
             <h2>Custom Jewelry Orders</h2>
-        
+                ${ordersHTML}
         </article>
     `;
 
   container.innerHTML = composedHTML;
 };
+
+document.addEventListener("newOrderPlaced", (event) => {
+  console.log("State of data has changed. Regenerating HTML...");
+  render();
+});
 
 render();
